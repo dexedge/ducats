@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<!--
+Gulden and ducat calculator (Bootstrap)
+Version 0.21
+Dexter Edge
+2018-09-11
+Updated: 2021-01-23
+
+The approach used for this calculator is based on the underlying HTML and JavaScript (not the 'Try It' code) at the page https://www.w3schools.com/howto/howto_js_weight_converter.asp
+
+The page uses Bootstrap 4.1.3
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gulden & Ducat Calculator</title>
+
+    <!-- Load Bootstrap files -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap 4.6 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    
+    <!-- Load local CSS-->
+    <link rel="stylesheet" href="ducatcalculator.css">  
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <img src="ducat.png" id="ducat" class="float-right" alt="Imperial ducat, 1786">
+            <h1>Austrian Gulden & Ducats, 1763–1789</h1>
+            <hr>
+        </div>
+        <form id="converter" autocomplete="off">
+        <div class="row"> <!-- Begin row 1 -->
+            <div class="col-md"> <!-- Begin column 1 -->
+                <h3>Gulden</h3>
+                <label>Gulden & kreuzer:</label>
+                <div class="input-group">
+                    <input id="gulden" class="form-control" type="number" placeholder="Gulden" oninput="guldenConverter(this.id, this.value)" onchange="guldenConverter(this.id, this.value)"
+                    onclick="this.select()" ondblclick="clearForm()">
+                    <div class="input-group-append">
+                        <span class="input-group-text">fl</span>
+                    </div>
+
+                    <input id="kreuzer" class="form-control" type="number" placeholder="Kreuzer" oninput="guldenConverter(this.id, this.value)" onchange="guldenConverter(this.id, this.value)"
+                    onclick="this.select()" ondblclick="clearForm()">
+                    <div class="input-group-append">
+                        <span class="input-group-text">kr</span>
+                    </div>
+                </div>
+                <label>Total kreuzer:</label>
+                <div class="input-group">
+                    <input id="totalkreuzer" class="form-control" type="number" placeholder="Total kreuzer" oninput="guldenConverter(this.id, this.value)" onchange="guldenConverter(this.id, this.value)"
+                    onclick="this.select()" ondblclick="clearForm()">
+                    <div class="input-group-append">
+                        <span class="input-group-text">kr</span>
+                    </div>
+                </div>
+            </div> <!-- End column 1-->
+            <div class="col-md"> <!-- Begin instruction column -->
+                <p class="instructions">
+                    Entering a value into any box will cause all other boxes to update automatically. Deleting the value in any box will reset the form, as will refreshing the browser.
+                </p>
+                <p class="instructions">
+                    There were 60&nbsp;<b>kreuzer</b> (kr) in a <b>gulden</b> (fl). Ducat values are taken from the Habsburg patents of 17 Aug 1763, 23 Mar 1771, 1 Sep 1783, and 12 Jan 1786 (see Becher 1838, ii:297ff, 303ff, 333ff, & 336ff). To see the value of any particular type of ducat during a particular period, enter 1 into its box.
+
+                <p class="instructions">
+                    Until 1 Feb 1786, the Florentine <b>gigliato</b> and Venetian <b>zecchino</b> had the same value in Austria as the <b>Kremnitz</b> ducat, and Salzburg and Bavarian ducats had the same value as the "imperial" ("<b>k:&nbsp;k:</b>" or "<b>kaiserlich-königlich</b>") ducat. All ducats except the Kremnitz and "imperial" were taken out of circulation by the end of 1786; the Kremnitz ducat was taken out of circulation on 1 Jan 1790. The "k:&nbsp;k:" ducat remained in circulation with a&nbsp;value of 4 fl 30 kr.</p>
+                </p>
+            </div> <!-- End instruction column -->
+        </div> <!-- End row 1 -->
+        <hr>
+        <h3>Ducats</h3>
+        <div class="row"> <!-- Begin row 2 -->
+            <div class="col-md-3"> <!-- Begin column 1 -->
+                <label>1 Nov 1763 to 30 Apr 1771</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Krem:</span>
+                    </div>
+                    <input id="kremnitz-1763" class="form-control" type="number" placeholder="Kremnitz" oninput="guldenConverter(this.id, this.value)" onchange="guldenConverter(this.id, this.value)"
+                    onclick="this.select()" ondblclick="clearForm()">
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">k: k:</span>
+                    </div>
+                    <input id="kaiserlich-1763" class="form-control" type="number" placeholder="imperial" oninput="guldenConverter(this.id, this.value)" onchange="guldenConverter(this.id, this.value)"
+                    onclick="this.select()" ondblclick="clearForm()">
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">ord:</span>
+                    </div>
+                    <input id="ordinary-1763" class="form-control" type="number" placeholder="ordinary" oninput="guldenConverter(this.id, this.value)" onchange="guldenConverter(this.id, this.value)"
+                    onclick="this.select()" ondblclick="clearForm()">
+                </div>
+            </div> <!-- End column 1-->
+            <div class="col-md-3"> <!-- Begin column 2 -->
+                <label>1 May 1771 to 14 Sep 1783</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Krem:</span>
+                    </div>
+                    <input id="kremnitz-1771" class="form-control" type="number" placeholder="Kremnitz" oninput="guldenConverter(this.id, this.value)" onchange="guldenConverter(this.id, this.value)"
+                    onclick="this.select()" ondblclick="clearForm()">
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">k: k:</span>
+                    </div>
+                    <input id="kaiserlich-1771" class="form-control" type="number" placeholder="imperial" oninput="guldenConverter(this.id, this.value)" onchange="guldenConverter(this.id, this.value)"
+                    onclick="this.select()" ondblclick="clearForm()">
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">ord:</span>
+                    </div>
+                    <input id="ordinary-1771" class="form-control" type="number" placeholder="ordinary" oninput="guldenConverter(this.id, this.value)" onchange="guldenConverter(this.id, this.value)"
+                    onclick="this.select()" ondblclick="clearForm()">
+                </div>
+            </div> <!-- End column 2-->
+            <div class="col-md-3"> <!-- Begin column 3 -->
+                <label>15 Sep 1783 to 31 Jan 1786</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Krem:</span>
+                    </div>
+                    <input id="kremnitz-1783" class="form-control" type="number" placeholder="Kremnitz" oninput="guldenConverter(this.id, this.value)" onchange="guldenConverter(this.id, this.value)"
+                    onclick="this.select()" ondblclick="clearForm()">
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">k: k:</span>
+                    </div>
+                    <input id="kaiserlich-1783" class="form-control" type="number" placeholder="imperial" oninput="guldenConverter(this.id, this.value)" onchange="guldenConverter(this.id, this.value)"
+                    onclick="this.select()" ondblclick="clearForm()">
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">ord:</span>
+                    </div>
+                    <input id="ordinary-1783" class="form-control" type="number"placeholder="ordinary" oninput="guldenConverter(this.id, this.value)" onchange="guldenConverter(this.id, this.value)"
+                    onclick="this.select()" ondblclick="clearForm()">
+                </div>
+            </div> <!-- End column 3-->
+            <div class="col-md-3"> <!-- Begin column 4 -->
+                <label>1 Feb 1786 to 31 Dec 1789</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Krem:</span>
+                    </div>
+                    <input id="kremnitz-1786" class="form-control" type="number" placeholder="Kremnitz" oninput="guldenConverter(this.id, this.value)" onchange="guldenConverter(this.id, this.value)"
+                    onclick="this.select()" ondblclick="clearForm()">
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">k: k:</span>
+                    </div>
+                    <input id="kaiserlich-1786" class="form-control" type="number" placeholder="imperial" oninput="guldenConverter(this.id, this.value)" onchange="guldenConverter(this.id, this.value)"
+                    onclick="this.select()" ondblclick="clearForm()">
+                </div>
+            </div> <!-- End column 4-->
+        </div> <!-- End row 2-->
+    </form>
+        <hr>
+        <p class="instructions">
+            <i>Source:</i> Siegfried Becher, <i>Das österreichische Münzwesen vom Jahre 1524 bis 1838 in historischer, statistischer und legislativer Hinsicht</i><br>(Vienna: 1838), &nbsp;2, <a href="https://books.google.com/books?id=UaZMAAAAcAAJ&dq=becher%20m%C3%BCnzwesen&pg=PP5#v=onepage&q&f=false" target="_blank"><i>Legislativer Theil</i></a>.
+        </p>
+        <p class="instructions">
+            <i>Citation:</i> Dexter Edge. 2021. "Austrian Gulden & Ducats, 1763–1789." 
+           <a href="http://dexteredge.org/ducatcalculator.html">http://dexteredge.org/ducatcalculator.html</a>
+        </p>
+    </div> <!-- End container -->
+    
+    <!-- Bootstrap 4.6, JS bundle -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    
+    <!-- Load local JS -->
+    <script src="ducatcalculator.js"></script>
+</body>
+</html>

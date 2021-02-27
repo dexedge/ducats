@@ -1,0 +1,64 @@
+/*
+Gulden and ducat calculator (Bootstrap), CSS
+Version 0.2
+Dexter Edge
+2018-09-11
+
+The approach used for this calculator is based on the underlying HTML and JavaScript (not the 'Try It' code) at the page https://www.w3schools.com/howto/howto_js_weight_converter.asp
+
+The page uses Bootstrap 4.1.3, and this local CSS is in relation to those styles.
+*/
+
+body {
+    font-size: 18px;
+    background-color: #fafaf3;
+}
+
+/* For header image */
+img {
+    width: 200px;
+    padding-top: 0.75em;
+    padding-right: 2em;
+}
+
+/* to remove red around input boxes in Firefox */
+input:invalid {
+    box-shadow: none;
+}
+
+h1, h3, h5, label, .input-group-text {
+    font-family: serif;
+}
+
+h1 {
+    padding-top: 1em;
+}
+
+hr {
+    height: 1px;
+    background-color:#ccc;
+    margin-bottom: 0.5em;
+}
+
+.input-group {
+    margin-bottom: 1em;
+}
+
+.input-group-append {
+    padding-right: 1em;
+}
+
+input + .input-group-prepend {
+    padding-left: 1em;
+}
+
+.input-group-text {
+    font-size: 0.8em;
+    width: 4em;
+}
+
+.instructions {
+    font-size: 0.75em;
+    color: #666;
+    padding: 0 1.2em;
+}
