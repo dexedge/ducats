@@ -15,7 +15,7 @@ body {
 }
 
 /* For header image */
-img {
+.page-header img {
     width: 200px;
     padding-top: 0.75em;
     padding-right: 2em;
